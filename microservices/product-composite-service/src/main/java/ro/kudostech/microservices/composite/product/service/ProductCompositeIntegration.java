@@ -1,4 +1,4 @@
-package ro.kudostech.microservices.composite.service;
+package ro.kudostech.microservices.composite.product.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;

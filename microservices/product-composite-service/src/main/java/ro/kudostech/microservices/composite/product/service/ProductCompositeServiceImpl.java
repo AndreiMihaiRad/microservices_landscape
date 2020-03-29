@@ -1,12 +1,7 @@
-package ro.kudostech.microservices.composite.service;
+package ro.kudostech.microservices.composite.product.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 import ro.kudostech.api.composite.product.*;
 import ro.kudostech.api.core.product.Product;
 import ro.kudostech.api.core.recommendation.Recommendation;

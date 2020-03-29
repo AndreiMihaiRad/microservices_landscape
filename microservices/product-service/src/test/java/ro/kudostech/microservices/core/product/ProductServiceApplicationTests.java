@@ -45,7 +45,8 @@ class ProductServiceApplicationTests {
 				.expectHeader().contentType(APPLICATION_JSON)
 				.expectBody()
 				.jsonPath("$.path").isEqualTo("/product/no-integer")
-				.jsonPath("$.message").isEqualTo("Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: \"no-integer\"");
+//				.jsonPath("$.message").isEqualTo("Failed to convert value of type 'java.lang.String' to required type 'int'; nested exception is java.lang.NumberFormatException: For input string: \"no-integer\"");
+				.jsonPath("$.message").isEqualTo("Type mismatch.");
 	}
 
 	@Test

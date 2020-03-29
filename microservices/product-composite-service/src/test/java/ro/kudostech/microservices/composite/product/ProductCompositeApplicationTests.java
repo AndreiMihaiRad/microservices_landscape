@@ -1,4 +1,4 @@
-package ro.kudostech.microservices.composite;
+package ro.kudostech.microservices.composite.product;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import ro.kudostech.api.core.product.Product;
 import ro.kudostech.api.core.recommendation.Recommendation;
 import ro.kudostech.api.core.review.Review;
-import ro.kudostech.microservices.composite.service.ProductCompositeIntegration;
+import ro.kudostech.microservices.composite.product.service.ProductCompositeIntegration;
 import ro.kudostech.util.exceptions.InvalidInputException;
 import ro.kudostech.util.exceptions.NotFoundException;
 
