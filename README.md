@@ -81,6 +81,18 @@ docker-compose logs product
 ./gradlew clean build && docker-compose build && ./test-em-all.bash start stop
 ```
 
+## Persistence
+All database services will be run as docker services
+- see data stored in MongoDB with command like the following
+```bash
+docker-compose exec mongodb mongo product-db --quiet --eval "db.products.find()"
+```
+
+- data stored in MYSQL
+```bash
+docker-compose exec mysql mysql --uuser -p review-db -e "select * from reviews"
+```
+
 
 
 ## References
