@@ -15,7 +15,6 @@ import ro.kudostech.microservices.core.review.persistence.ReviewRepository;
 import ro.kudostech.util.exceptions.InvalidInputException;
 import ro.kudostech.util.http.ServiceUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 

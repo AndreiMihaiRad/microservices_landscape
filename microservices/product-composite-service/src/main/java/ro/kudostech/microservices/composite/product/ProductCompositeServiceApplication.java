@@ -3,26 +3,29 @@ package ro.kudostech.microservices.composite.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.health.*;
+import org.springframework.boot.actuate.health.CompositeReactiveHealthIndicator;
+import org.springframework.boot.actuate.health.DefaultReactiveHealthIndicatorRegistry;
+import org.springframework.boot.actuate.health.HealthAggregator;
+import org.springframework.boot.actuate.health.ReactiveHealthIndicator;
+import org.springframework.boot.actuate.health.ReactiveHealthIndicatorRegistry;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 import ro.kudostech.microservices.composite.product.service.ProductCompositeIntegration;
 import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2WebFlux;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.LinkedHashMap;
 
 import static java.util.Collections.emptyList;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static springfox.documentation.builders.RequestHandlerSelectors.basePackage;
-import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
-@EnableSwagger2WebFlux
+@EnableSwagger2
 @SpringBootApplication
 @ComponentScan("ro.kudostech")
 public class ProductCompositeServiceApplication {
@@ -43,14 +46,12 @@ public class ProductCompositeServiceApplication {
 	 * @return
 	 */
 	@Bean
-	public Docket apiDocumentation() {
-
-		return new Docket(SWAGGER_2)
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(basePackage("ro.kudostech.microservices.composite.product"))
+				.apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any())
 				.build()
-				.globalResponseMessage(GET, emptyList())
 				.apiInfo(new ApiInfo(
 						apiTitle,
 						apiDescription,
@@ -59,8 +60,8 @@ public class ProductCompositeServiceApplication {
 						new Contact(apiContactName, apiContactUrl, apiContactEmail),
 						apiLicense,
 						apiLicenseUrl,
-						emptyList()
-				));
+						emptyList())
+				);
 	}
 
 	@Bean

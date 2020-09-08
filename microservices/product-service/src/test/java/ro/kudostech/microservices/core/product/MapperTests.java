@@ -1,14 +1,14 @@
 package ro.kudostech.microservices.core.product;
 
 import org.junit.jupiter.api.Test;
-
-//import org.junit.Test;
 import org.mapstruct.factory.Mappers;
 import ro.kudostech.api.core.product.Product;
 import ro.kudostech.microservices.core.product.persitence.ProductEntity;
 import ro.kudostech.microservices.core.product.services.ProductMapper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class MapperTests {
 

@@ -14,9 +14,6 @@ import ro.kudostech.microservices.core.recommendation.persitence.RecommendationR
 import ro.kudostech.util.exceptions.InvalidInputException;
 import ro.kudostech.util.http.ServiceUtil;
 
-
-import java.util.List;
-
 @RestController
 public class RecommendationServiceImpl implements RecommendationService {
 

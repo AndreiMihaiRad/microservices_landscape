@@ -93,6 +93,20 @@ docker-compose exec mongodb mongo product-db --quiet --eval "db.products.find()"
 docker-compose exec mysql mysql --uuser -p review-db -e "select * from reviews"
 ```
 
+## Start database containers in order to be able to run services from IntelliJ
+- start containers
+```bash
+docker-compose -f docker-compose-local.yml up -d
+```
+- stop containers
+```bash
+docker-compose -f docker-compose-local.yml down
+```
+
+## Start all containers and run tests
+```bash
+./test-em-all.bash start stop
+```
 
 
 ## References

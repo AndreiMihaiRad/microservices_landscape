@@ -1,8 +1,6 @@
 package ro.kudostech.microservices.core.review;
 
 import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +19,12 @@ import ro.kudostech.microservices.core.review.persistence.ReviewRepository;
 import ro.kudostech.util.exceptions.InvalidInputException;
 
 import static org.junit.Assert.fail;
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-import static org.springframework.http.HttpStatus.*;
-import static org.springframework.http.MediaType.*;
-import static reactor.core.publisher.Mono.just;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static ro.kudostech.api.event.Event.Type.CREATE;
 import static ro.kudostech.api.event.Event.Type.DELETE;
 

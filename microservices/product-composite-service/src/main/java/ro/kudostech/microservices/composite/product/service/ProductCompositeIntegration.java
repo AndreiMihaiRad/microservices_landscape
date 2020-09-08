@@ -11,7 +11,6 @@ import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.core.publisher.Flux;
@@ -28,7 +27,6 @@ import ro.kudostech.util.exceptions.NotFoundException;
 import ro.kudostech.util.http.HttpErrorInfo;
 
 import java.io.IOException;
-import java.util.List;
 
 import static reactor.core.publisher.Flux.empty;
 import static ro.kudostech.api.event.Event.Type.CREATE;

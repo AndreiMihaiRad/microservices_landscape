@@ -9,7 +9,9 @@ import ro.kudostech.microservices.core.review.services.ReviewMapper;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class MapperTests {
 
