@@ -71,23 +71,23 @@ public class ProductCompositeServiceApplication {
 		return new RestTemplate();
 	}
 
-	@Autowired
-	HealthAggregator healthAggregator;
+//	@Autowired
+//	HealthAggregator healthAggregator;
 
 	@Autowired
 	ProductCompositeIntegration integration;
 
-	@Bean
-	ReactiveHealthIndicator coreServices() {
-
-		ReactiveHealthIndicatorRegistry registry = new DefaultReactiveHealthIndicatorRegistry(new LinkedHashMap<>());
-
-		registry.register("product", () -> integration.getProductHealth());
-		registry.register("recommendation", () -> integration.getRecommendationHealth());
-		registry.register("review", () -> integration.getReviewHealth());
-
-		return new CompositeReactiveHealthIndicator(healthAggregator, registry);
-	}
+//	@Bean
+//	ReactiveHealthIndicator coreServices() {
+//
+//		ReactiveHealthIndicatorRegistry registry = new DefaultReactiveHealthIndicatorRegistry(new LinkedHashMap<>());
+//
+//		registry.register("product", () -> integration.getProductHealth());
+//		registry.register("recommendation", () -> integration.getRecommendationHealth());
+//		registry.register("review", () -> integration.getReviewHealth());
+//
+//		return new CompositeReactiveHealthIndicator(healthAggregator, registry);
+//	}
 
 	@Bean
 	@LoadBalanced

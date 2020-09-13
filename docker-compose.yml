@@ -38,13 +38,19 @@ services:
   product-composite:
     build: microservices/product-composite-service
     mem_limit: 350m
-    ports:
-      - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
       rabbitmq:
         condition: service_healthy
+
+  gateway:
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    build: spring-cloud/gateway
+    mem_limit: 350m
+    ports:
+      - "8080:8080"
 
   # $ mongo
   mongodb:
@@ -91,5 +97,3 @@ services:
   eureka:
     build: spring-cloud/eureka-server
     mem_limit: 350m
-    ports:
-      - "8761:8761"
