@@ -1,5 +1,6 @@
-api:
+spring.application.name: product-composite
 
+api:
   common:
     version: 1.0.0
     title: Sample API
@@ -46,17 +47,6 @@ api:
 
 server.port: 7000
 
-app:
-  product-service:
-    host: localhost
-    port: 7001
-  recommendation-service:
-    host: localhost
-    port: 7002
-  review-service:
-    host: localhost
-    port: 7003
-
 spring.cloud.stream:
   defaultBinder: rabbit
   default.contentType: application/json
@@ -91,3 +81,16 @@ logging:
 
 management.endpoint.health.show-details: "ALWAYS"
 management.endpoints.web.exposure.include: "*"
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
+
+ribbon.ServerListRefreshInterval: 5000
+ribbon.NFLoadBalancerPingInterval: 5

@@ -30,7 +30,7 @@ import static ro.kudostech.api.event.Event.Type.DELETE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment=RANDOM_PORT,
-		properties = {"logging.level.se.magnus=DEBUG","spring.datasource.url=jdbc:h2:mem:review-db"})
+		properties = {"logging.level.se.magnus=DEBUG","spring.datasource.url=jdbc:h2:mem:review-db", "eureka.client.enabled=false"})
 public class ReviewServiceApplicationTests {
 
 	@Autowired

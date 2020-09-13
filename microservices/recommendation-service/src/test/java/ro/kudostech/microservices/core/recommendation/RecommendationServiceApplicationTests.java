@@ -31,7 +31,7 @@ import static ro.kudostech.api.event.Event.Type.DELETE;
 
 @DirtiesContext
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=RANDOM_PORT, properties = {"spring.data.mongodb.port: 0"})
+@SpringBootTest(webEnvironment=RANDOM_PORT, properties = {"spring.data.mongodb.port: 0", "eureka.client.enabled=false"})
 class RecommendationServiceApplicationTests {
 
 	@Autowired
