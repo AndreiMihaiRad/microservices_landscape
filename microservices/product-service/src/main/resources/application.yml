@@ -1,5 +1,22 @@
-spring.application.name: product
 server.port: 7001
+server.error.include-message: always
+
+spring.application.name: product
+
+app:
+  eureka-username: u
+  eureka-password: p
+  eureka-server: localhost
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://${app.eureka-username}:${app.eureka-password}@${app.eureka-server}:8761/eureka/"
+    initialInstanceInfoReplicationIntervalSeconds: 5
+    registryFetchIntervalSeconds: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 5
 
 spring.data.mongodb:
   host: localhost
@@ -39,17 +56,8 @@ spring.rabbitmq:
 logging:
   level:
     root: INFO
-    ro.kudostech: DEBUG
+    se.magnus: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
 
 management.endpoint.health.show-details: "ALWAYS"
 management.endpoints.web.exposure.include: "*"
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    initialInstanceInfoReplicationIntervalSeconds: 5
-    registryFetchIntervalSeconds: 5
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 5

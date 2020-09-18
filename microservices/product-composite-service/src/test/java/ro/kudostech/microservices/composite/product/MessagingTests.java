@@ -35,12 +35,11 @@ import static ro.kudostech.api.event.Event.Type.DELETE;
 import static ro.kudostech.microservices.composite.product.IsSameEvent.sameEventExceptCreatedAt;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=RANDOM_PORT)
-class MessagingTest {
-
-    private static final int PRODUCT_ID_OK = 1;
-    private static final int PRODUCT_ID_NOT_FOUND = 2;
-    private static final int PRODUCT_ID_INVALID = 3;
+@SpringBootTest(
+        webEnvironment=RANDOM_PORT,
+        classes = {ProductCompositeServiceApplication.class, TestSecurityConfig.class },
+        properties = {"spring.main.allow-bean-definition-overriding=true","eureka.client.enabled=false"})
+public class MessagingTests {
 
     @Autowired
     private WebTestClient client;
@@ -111,7 +110,6 @@ class MessagingTest {
 
     @Test
     public void deleteCompositeProduct() {
-
         deleteAndVerifyProduct(1, OK);
 
         // Assert one delete product event queued up

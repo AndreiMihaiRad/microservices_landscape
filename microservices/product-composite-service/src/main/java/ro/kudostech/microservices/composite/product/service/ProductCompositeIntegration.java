@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.actuate.health.Health;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
@@ -35,15 +33,17 @@ import static ro.kudostech.api.event.Event.Type.DELETE;
 @EnableBinding(ProductCompositeIntegration.MessageSources.class)
 @Component
 public class ProductCompositeIntegration implements ProductService, RecommendationService, ReviewService {
+
     private static final Logger LOG = LoggerFactory.getLogger(ProductCompositeIntegration.class);
 
     private final String productServiceUrl = "http://product";
     private final String recommendationServiceUrl = "http://recommendation";
     private final String reviewServiceUrl = "http://review";
 
-    private WebClient webClient;
     private final ObjectMapper mapper;
     private final WebClient.Builder webClientBuilder;
+
+    private WebClient webClient;
 
     private MessageSources messageSources;
 
@@ -63,14 +63,12 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
         MessageChannel outputReviews();
     }
 
-
     @Autowired
     public ProductCompositeIntegration(
             WebClient.Builder webClientBuilder,
             ObjectMapper mapper,
             MessageSources messageSources
     ) {
-
         this.webClientBuilder = webClientBuilder;
         this.mapper = mapper;
         this.messageSources = messageSources;
@@ -88,7 +86,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
         LOG.debug("Will call the getProduct API on URL: {}", url);
 
         return getWebClient().get().uri(url).retrieve().bodyToMono(Product.class).log().onErrorMap(WebClientResponseException.class, ex -> handleException(ex));
-
     }
 
     @Override
@@ -126,6 +123,7 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
 
     @Override
     public Flux<Review> getReviews(int productId) {
+
         String url = reviewServiceUrl + "/review?productId=" + productId;
 
         LOG.debug("Will call the getReviews API on URL: {}", url);
@@ -139,27 +137,6 @@ public class ProductCompositeIntegration implements ProductService, Recommendati
     public void deleteReviews(int productId) {
         messageSources.outputReviews().send(MessageBuilder.withPayload(new Event(DELETE, productId, null)).build());
     }
-
-//    public Mono<Health> getProductHealth() {
-//        return getHealth(productServiceUrl);
-//    }
-//
-//    public Mono<Health> getRecommendationHealth() {
-//        return getHealth(recommendationServiceUrl);
-//    }
-//
-//    public Mono<Health> getReviewHealth() {
-//        return getHealth(reviewServiceUrl);
-//    }
-
-//    private Mono<Health> getHealth(String url) {
-//        url += "/actuator/health";
-//        LOG.debug("Will call the Health API on URL: {}", url);
-//        return getWebClient().get().uri(url).retrieve().bodyToMono(String.class)
-//                .map(s -> new Health.Builder().up().build())
-//                .onErrorResume(ex -> Mono.just(new Health.Builder().down(ex).build()))
-//                .log();
-//    }
 
     private WebClient getWebClient() {
         if (webClient == null) {
