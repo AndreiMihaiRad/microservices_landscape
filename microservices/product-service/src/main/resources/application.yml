@@ -39,7 +39,7 @@ spring.rabbitmq:
 logging:
   level:
     root: INFO
-    ro.kudostech: DEBUG
+    ro.msg: DEBUG
 
 management.endpoint.health.show-details: "ALWAYS"
 management.endpoints.web.exposure.include: "*"

@@ -20,7 +20,7 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 
-group = 'ro.kudostech.microservices.util'
+group = 'ro.msg.microservices.util'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '1.8'
 
